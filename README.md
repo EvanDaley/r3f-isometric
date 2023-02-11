@@ -1,8 +1,8 @@
-# r3f-overlay
+# r3f-isometric
 
 ## Live Demo
-https://evandaley.github.io/r3f-overlay/
+https://evandaley.github.io/r3f-isometric/
 
 ## Description
-A webgl render overlayed on top of an MP4 video.
-# r3f-isometric
+
+WIP Isometric stuff
