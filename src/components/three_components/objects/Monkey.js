@@ -31,7 +31,7 @@ export default function Model(props) {
   const group = useRef()
   const { nodes, animations } = useGLTF(filePath)
   const { actions } = useAnimations(animations, group)
-  console.log(actions)
+
   return (
     <group ref={group} {...props}>
       <mesh geometry={nodes.Suzanne.geometry}>

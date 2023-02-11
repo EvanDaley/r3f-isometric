@@ -8,9 +8,9 @@ export default function Navigation() {
 
   return (
     <>
-      <video autoPlay muted loop id="myVideo" key={videoPaths[videoIndex]}>
+      {/* <video autoPlay muted loop id="myVideo" key={videoPaths[videoIndex]}>
         <source src={videoPaths[videoIndex]} type="video/mp4" />
-      </video>
+      </video> */}
 
       {/* <div class="content">
         <h1>Heading</h1>

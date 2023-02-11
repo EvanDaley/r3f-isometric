@@ -12,7 +12,6 @@ export default function Model(props) {
   const shadow = useRef()
   const { nodes } = useGLTF(filePath, true)
 
-  console.log(nodes)
   const xMoveFactor = 8
   const yMoveFactor = 2
 

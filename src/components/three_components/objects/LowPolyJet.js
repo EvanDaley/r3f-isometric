@@ -44,12 +44,9 @@ function TheModel() {
     a2.play()
     a3.play()
 
-    console.log(groupRef.current.children)
     shipRef.current = groupRef.current.children.find(item => item.name === 'Ship')
     targetRef.current = groupRef.current.children.find(item => item.name === 'CameraTarget')
     camPositionRef.current = groupRef.current.children.find(item => item.name === 'CamPosition')
-
-    console.log(targetRef.current)
   })
 
   useFrame((state, delta) => {

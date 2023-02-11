@@ -28,13 +28,9 @@ export default function Robot(props) {
   }
 
   const material1 = new THREE.MeshPhysicalMaterial(materialProps)
-  console.log(material1)
 
   const group = useRef()
   const { nodes, materials } = useGLTF(filePath)
-  console.log(materials)
-
-  console.log(materials.Mat1)
 
   return (
     <group ref={group} {...props} dispose={null}>

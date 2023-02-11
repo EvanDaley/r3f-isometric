@@ -16,14 +16,11 @@ function App() {
 
   const onDocumentClick = (e) => {
     switchVideos()
-    console.log(videoIndex)
-    console.log(videoPaths)
   }
 
   onDocumentClick.bind(this)
 
   useEffect(() => {
-    console.log("HERE")
     document.addEventListener('click', onDocumentClick, false);
     document.addEventListener('mousemove', onDocumentPointerMove, false);
   }, []);
