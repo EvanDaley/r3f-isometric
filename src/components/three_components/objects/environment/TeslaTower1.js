@@ -53,7 +53,7 @@ const Texture = ({ texture }) => {
         attach="geometry"
         args={[15, 14]}
       />
-      <meshBasicMaterial attach="material" map={texture} />
+      <meshBasicMaterial attach="material" map={texture} opacity={.5} />
     </mesh>
   );
 };

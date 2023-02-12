@@ -64,8 +64,8 @@ export default function Scene({ sceneIndex }) {
     <>
       {/* <PerspectiveCamera makeDefault position={[0, 2, 20]} /> */}
 
-      <Ship />
-      <TeslaTower/>
+      {/* <Ship /> */}
+      {/* <TeslaTower/> */}
 
       <OrthographicCamera makeDefault zoom={30} ref={cameraRef} />
 
