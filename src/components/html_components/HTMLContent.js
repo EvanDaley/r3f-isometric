@@ -11,8 +11,8 @@ export default function HTMLContent() {
   return (
     <>
       {/*<div className="html-content-container">*/}
-      {/* <Menu /> */}
-      {/* <ButtonNavigation/> */}
+      <Menu />
+      <ButtonNavigation/>
       <VideoSandbox />
       {/*</div>*/}
     </>
