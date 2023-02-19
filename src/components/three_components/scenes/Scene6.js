@@ -1,7 +1,11 @@
 import OxygenContainer2 from '../objects/OxygenContainer2'
 import Box from '../objects/Box'
 import AbstractSphere from '../objects/AbstractSphere'
-import { OrbitControls, Stats, Stage, Loader, PerspectiveCamera, OrthographicCamera, Environment, useTexture, Reflector } from '@react-three/drei';
+import {
+  OrbitControls, Stats, Stage, Loader, PerspectiveCamera,
+  Text,
+  OrthographicCamera, Environment, useTexture, Reflector
+} from '@react-three/drei';
 import OxygenContainer3 from '../objects/OxygenContainer3'
 import Robot from '../objects/Robot'
 
@@ -17,6 +21,13 @@ import { useSpring, animated } from "@react-spring/three"
 const Cell = React.forwardRef(({ position, onClick }, ref) => {
   const [hovered, setHovered] = useState(false)
 
+  const [randomNumber, setRandomNumber] = useState(0);
+
+  useEffect(() => {
+    const newRandomNumber = Math.floor(Math.random() * 3) + 5
+    setRandomNumber(newRandomNumber);
+  }, []);
+
   return (
     <group ref={ref}>
       <mesh
@@ -26,12 +37,8 @@ const Cell = React.forwardRef(({ position, onClick }, ref) => {
         onPointerLeave={() => setHovered(false)}
         position={position}>
         <planeGeometry args={[1, 1]} />
-        <meshStandardMaterial color={hovered ? "green" : "grey"} />
+        <meshStandardMaterial color={hovered ? `#558855` : `#${randomNumber}8${randomNumber}8${randomNumber}8`} />
       </mesh>
-      {/* <mesh position={position}>
-        <boxGeometry args={[1, 1]} />
-        <meshStandardMaterial color={"grey"} />
-      </mesh> */}
     </group>
   )
 })
@@ -48,90 +55,52 @@ function grid(w, h) {
 }
 
 const SmoothMove = ({ children, position }) => {
-  const { pos } = useSpring({ pos: position })
+  const { pos } = useSpring({
+    pos: position,
+    config: { duration: 500 }
+  })
 
   return (
     <>
-
       <animated.group position={pos}>
-        {/* {children} */}
-
-        <mesh position={[0, 1, 0]}>
-            <boxBufferGeometry attach="geometry" args={[1, 1, 1]} />
-            <meshNormalMaterial attach="material" />
-          </mesh>
+        {children}
       </animated.group>
-
-                {/* <mesh position={[0, 1, 0]}>
-            <boxBufferGeometry attach="geometry" args={[1, 1, 1]} />
-            <meshNormalMaterial attach="material" />
-          </mesh> */}
     </>
   )
-  // return <animated.group position={pos}>{children}</animated.group>
 }
 
 function Room() {
-  const spacing = 1.1
-  const cellCount = 8
-  const cells = grid(cellCount, cellCount).map(([x, y, z]) => [x * spacing, y * spacing, z * spacing])
+  const spacing = 1.05
+  const cellCount = 15
+  const cells = grid(cellCount, cellCount).map(([x, y, z]) => [x * spacing, -.5, z * spacing])
 
-  const [position, setPosition] = useState({ x: 0, y: 0, z: 0 });
+  const [position, setPosition] = useState([0, 0, 0]);
 
   const onTargetClicked = (position) => {
-    console.log(position)
-    // updateMyPresence({ position: [position[0], 0.5, position[2]] })
+    setPosition([position[0], 0, position[2]])
   }
 
   return (
     <>
-      <pointLight position={[30, 0, 0]} color="blue" intensity={10} />
+      <group position={[3, 2, 0]}>
+        <pointLight  color="#66ffff" intensity={3} decay={3} distance={25} />
+        <Robot scale={[1,1,1]}/>
+      </group>
+
       <group position={[-((cellCount / 2) * spacing), 0, -((cellCount / 2) * spacing)]}>
         {cells.map((pos) => (
           <Cell onClick={onTargetClicked} key={`cell-${pos}`} position={pos} />
         ))}
-        
-          <boxBufferGeometry attach="geometry" args={[1, 1, 1]} />
-          <boxBufferGeometry attach="geometry" args={[2, 2, 2]} />
-          <boxBufferGeometry attach="geometry" args={[0,0,0]} />
-          {/* <OxygenContainer3 position={[0, 0, 0]} rotation={[0,2,0]} scale={[.2,.2,.2]}/> */}
-          <Robot position={[0, .1, 0]} rotation={[0,2,0]} scale={[.2,.2,.2]}/>
-
-          {/* <mesh position={[0, .5, 0]}>
-            <boxBufferGeometry attach="geometry" args={[1, 1, 1]} />
-            <meshNormalMaterial attach="material" />
-          </mesh> */}
 
         <SmoothMove position={position}>
-          {/* <AnimatedSprite src={lisa} frameCount={9} /> */}
-          {/* <AsepriteTest />
-          <mesh position={[0, 1, 0]}>
+
+          <mesh position={[0, 0, 0]}>
             <boxBufferGeometry attach="geometry" args={[1, 1, 1]} />
             <meshNormalMaterial attach="material" />
-          </mesh> */}
+          </mesh>
 
-          {/* <boxBufferGeometry attach="geometry" args={[1, 1, 1]} /> */}
         </SmoothMove>
-        {/* <GremlinTest animation="idle" position={[6.6, 1, 5.5]} /> */}
-        {/* <BardTest animation="idle" position={[1.1, 1, 5.5]} /> */}
-        {/* <GremlinTest animation="boom" position={[6.6, 1, 7.7]} /> */}
-        {/* <Sprite position={[1.1, 1, 2.2]} img={frog} />
-          <Sprite position={[6.6, 1, 5.5]} img={frog} />
-          <Sprite position={[0, 1, 5.5]} img={frog} />
-          <Sprite position={[6.6, 1, 7.7]} img={frog} />
-          <Sprite position={[6.6, 1, 0]} img={frog} /> */}
 
-        {/* {others.map(({ connectionId, presence }) => {
-          if (presence == null || presence.position == null) {
-            return null
-          }
-
-          return (
-            <SmoothMove key={`cursor-${connectionId}`} position={presence.position}>
-              <Sprite img={frog} />
-            </SmoothMove>
-          )
-        })} */}
       </group>
     </>
   );
@@ -140,9 +109,9 @@ function Room() {
 export default function Scene() {
   return (
     <>
-      <OrthographicCamera makeDefault position={[15, 15, 15]} zoom={80} />
+      <OrthographicCamera makeDefault position={[15, 15, 15]} zoom={60} />
       <ambientLight intensity={0.1} />
-      <pointLight position={[10, 10, 10]} />
+      {/* <pointLight position={[10, 10, 10]} /> */}
       <Suspense fallback={null}>
         <Room />
       </Suspense>

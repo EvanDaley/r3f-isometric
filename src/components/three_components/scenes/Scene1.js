@@ -10,8 +10,8 @@ import { OrbitControls, Stats, Stage, Loader, OrthographicCamera, PerspectiveCam
 import { useFrame } from '@react-three/fiber';
 import React, { useState, useEffect, useRef, Suspense } from 'react';
 import { useControls } from "leva"
-import Ship from '../objects/environment/Ship'
-import TeslaTower from '../objects/environment/TeslaTower1'
+import Ship from '../objects/props/Ship'
+import TeslaTower from '../objects/props/TeslaTower1'
 
 
 const CameraDolly = ({ isZoom }) => {
@@ -64,8 +64,8 @@ export default function Scene({ sceneIndex }) {
     <>
       {/* <PerspectiveCamera makeDefault position={[0, 2, 20]} /> */}
 
-      {/* <Ship /> */}
-      {/* <TeslaTower/> */}
+      <Ship />
+      <TeslaTower/>
 
       <OrthographicCamera makeDefault zoom={30} ref={cameraRef} />
 

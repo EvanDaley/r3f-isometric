@@ -15,10 +15,7 @@ export default function Glass(props) {
     color: 'blue',
     normalMap: texture,
     normalScale: [0.3, 0.3],
-    'normalMap-wrapS': THREE.RepeatWrapping,
-    'normalMap-wrapT': THREE.RepeatWrapping,
     'normalMap-repeat': [30, 30],
-    'normalMap-anisotropy': 16,
     transmission: 0.99,
     transparent: true
   }
