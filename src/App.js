@@ -21,8 +21,8 @@ function App() {
   onDocumentClick.bind(this)
 
   useEffect(() => {
-    document.addEventListener('click', onDocumentClick, false);
-    document.addEventListener('mousemove', onDocumentPointerMove, false);
+    // document.addEventListener('click', onDocumentClick, false);
+    // document.addEventListener('mousemove', onDocumentPointerMove, false);
   }, []);
 
   return (
