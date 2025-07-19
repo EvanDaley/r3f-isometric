@@ -15,7 +15,7 @@ import useStore from '../../store'
 export default function ThreeCanvas() {
   const scenes = [
     // Scene7,
-    // Scene6,
+    Scene6,
     Scene1,
     Scene2,
     Scene3,

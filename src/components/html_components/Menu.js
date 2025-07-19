@@ -1,7 +1,7 @@
 // Header
 // This contains the menu.
 
-import { HamburgerButton } from "react-hamburger-button";
+// import { HamburgerButton } from "react-hamburger-button";
 import React, { useState } from 'react';
 
 function IconList() {
@@ -255,15 +255,15 @@ export default function HTMLContent() {
     <>
       <div style={headerStyle}>
         <div style={{ right: "24px", pointerEvents: "auto" }}>
-          <HamburgerButton
-            open={inMenu}
-            onClick={handleClick.bind(this)}
-            width={25}
-            height={20}
-            strokeWidth={2.5}
-            color='white'
-            animationDuration={0.5}
-          />
+          {/*<HamburgerButton*/}
+          {/*  open={inMenu}*/}
+          {/*  onClick={handleClick.bind(this)}*/}
+          {/*  width={25}*/}
+          {/*  height={20}*/}
+          {/*  strokeWidth={2.5}*/}
+          {/*  color='white'*/}
+          {/*  animationDuration={0.5}*/}
+          {/*/>*/}
         </div>
       </div>
 
